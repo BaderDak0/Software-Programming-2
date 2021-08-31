@@ -1,0 +1,137 @@
+1)	String string_create(char *);
+	אתחול מערך עם המחרוזת
+	
+	char *a = "Bader Daka";
+String str = string_create(a);
+str -> 	{
+			data ->	{'B','a','d','e','r',' ','D','a','k','a','\0'}
+			length = 10		// 6ool el kelme
+			capacity = 11 	// 6ool el m3ra5
+		}
+		
+2)	String multString_create(String, int);
+
+String s1 = string_create("ABC")
+s1->data = ABC
+s1->length == 3, capacity = 4
+String s1_mul = multString_create(s1, 5)
+s1_mult->data == ABCABCABCABCABC
+s1_mult->length == 15, capacity == 16
+
+3)	void string_destroy(String src);
+
+free
+
+4)	int string_length(String);
+
+return length // return strlen(data)
+
+5)	char *string_chars(String);
+
+return data
+
+6)	String string_copy(String str);
+
+העתקה המחרוזת למחרוזתתחדשה
+String new =(String)malloc(sizeof(*new));
+copy str->data to new->data
+
+7)	char string_charByIndex(String str, int i);
+
+return data[i]
+if(i < 0 || i >= length)
+	return NULL;
+assert( 0 <= i < length )
+
+8)	int string_findIndexByChar(String, char);
+
+find index of char inside string
+
+
+9)	bool string_isEqual(String s1, String s2);
+
+return compare(s1,s2) == 0 
+
+10) String string_addString(String dest, String src);
+dest = "Bader"
+src = "1Daka"
+..
+dest = "Bader1Daka"
+realloc ed'a bqash wsa3
+return dest;
+
+11) String string_replaceString(String dest, String src);
+dest = "123456789"
+src = "9876543210"
+..
+dest = "9876543210"
+
+dest = "123456"
+src = "abc"
+..
+dest = "abc456"
+// realloc  ed'a dest lazem techbar
+//	if src->capacity > dest->capacity THEN:
+// dest->capacity = src->capacity
+//	dest->data = realloc(dest->data, dest->capacity)
+//	ELSE: fesh 7aje
+
+12)	void string_convertCase(String, CASE);
+dest = " ABCabc"
+lower_case
+-> dest = " abcabc"
+
+upper_case
+->	" ABCABC"
+
++/- ('a'-'A')
+
+
+13)	bool string_isAllDigits(String);
+
+ed'a el String kolo a3dad
+
+
+14)	int string_findString(String dest, String sub);
+dest = "Bader5Daka"
+sub = "Daka"
+
+return == 6
+
+15)	void string_removeString(String dest, String sub);
+dest = "Bader5Daka\0"
+sub = "Daka"
+..
+dest = "Bader5\0"
+
+dest = "Bader5Daka\0"
+sub = "Bader"
+..
+dest = "5Daka\0"
+
+dest = "Bader5DakaDaka\0"
+sub = "Daka"
+..
+dest = "Bader5Daka\0"
+
+16)	void string_print(String);
+
+printf("%s\n",str->data);
+
+
+BONUS:
+
+String StringGetFirst(String);
+String StringGetNext(String);
+bool StringIsEmpty(String);
+
+#define STRING_FOREACH( word, str)   \
+    for (String word = StringGetFirst(str); !StringIsEmpty(str); word = StringGetNext(str))
+	
+str = "Ayham, Hussien         ra7    3l-ml3b"
+
+word = Ayham,
+word = Hussien
+word = ra7
+word = 3l-ml3b
+
